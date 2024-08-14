@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('bukus', function (Blueprint $table) {
+        Schema::create('buku', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
             $table->string('pengarang');
-            $table->string('konten');
+            $table->text('konten');
             $table->timestamps();
         });
     }

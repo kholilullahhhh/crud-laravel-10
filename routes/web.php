@@ -24,3 +24,8 @@ route::get('/buku/edit/{id}','App\Http\Controllers\BukuController@edit')->name('
 route::post('/buku/update/{id}','App\Http\Controllers\BukuController@update')->name('update');
 route::delete('/buku/delete{id}','App\Http\Controllers\BukuController@delete')->name('delete');
 
+
+
+
+
+
