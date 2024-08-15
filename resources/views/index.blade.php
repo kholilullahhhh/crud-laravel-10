@@ -12,8 +12,7 @@
 
     <form method="GET" action="{{ route('index') }}" class="mb-4">
         <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Cari buku..."
-                value="{{ request('search') }}">
+            <input type="text" class="form-control" name="search" placeholder="Cari buku..." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">
                     <i class="fas fa-search"></i> Cari
@@ -41,16 +40,16 @@
                     <td>{{ Str::limit($i->konten, 50) }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('edit', $i->id) }}" class="btn btn-sm btn-success" data-toggle="tooltip"
-                                title="Edit Buku">
+                            <a href="{{ route('show', $i->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Lihat Detail Buku">
+                                <i class="fas fa-eye"></i> Show
+                            </a>
+                            <a href="{{ route('edit', $i->id) }}" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit Buku">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('delete', $i->id) }}" method="POST"
-                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?');">
+                            <form action="{{ route('delete', $i->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger" type="submit" data-toggle="tooltip"
-                                    title="Hapus Buku">
+                                <button class="btn btn-sm btn-danger" type="submit" data-toggle="tooltip" title="Hapus Buku">
                                     <i class="fas fa-trash-alt"></i> Hapus
                                 </button>
                             </form>

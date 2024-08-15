@@ -47,9 +47,10 @@ class BukuController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
+{
+    $buku = Buku::findOrFail($id);
+    return view('show', compact('buku'));
+}
 
     /**
      * Show the form for editing the specified resource.
