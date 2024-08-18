@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/buku','App\Http\Controllers\BukuController@index')->name('index');
+route::get('/buku','App\Http\Controllers\BukuController@index')->name('.index');
 route::get('/buku/create','App\Http\Controllers\BukuController@create')->name('create');
 route::post('/buku/store','App\Http\Controllers\BukuController@store')->name('store');
 route::get('/buku/show/{id}','App\Http\Controllers\BukuController@show')->name('show');

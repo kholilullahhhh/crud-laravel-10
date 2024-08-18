@@ -12,7 +12,8 @@
 
     <form method="GET" action="{{ route('index') }}" class="mb-4">
         <div class="input-group">
-            <input type="text" class="form-control" name="search" placeholder="Cari buku..." value="{{ request('search') }}">
+            <input type="text" class="form-control" name="search" placeholder="Cari buku..."
+                value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">
                     <i class="fas fa-search"></i> Cari
@@ -25,6 +26,7 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
+                <th scope="col"><i class="fas fa-image"></i> Gambar</th>
                 <th scope="col"><i class="fas fa-book"></i> Judul</th>
                 <th scope="col"><i class="fas fa-user"></i> Pengarang</th>
                 <th scope="col"><i class="fas fa-align-left"></i> Konten</th>
@@ -35,21 +37,33 @@
             @foreach($buku as $i)
                 <tr>
                     <th scope="row">{{ $buku->firstItem() + $loop->index }}</th>
+                    <td>
+                    @if($i->gambar)
+                        <img src="{{ asset('images/' . $i->gambar) }}" alt="{{ $i->judul }}" width="100">
+                    @else
+                        <img src="{{ asset('images/default.png') }}" alt="Default Image" width="100">
+                    @endif
+                    </td>
                     <td>{{ $i->judul }}</td>
                     <td>{{ $i->pengarang }}</td>
                     <td>{{ Str::limit($i->konten, 50) }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('show', $i->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Lihat Detail Buku">
+                            <a href="{{ route('show', $i->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip"
+                                title="Lihat Detail Buku" style="margin-right: 5px;">
                                 <i class="fas fa-eye"></i> Show
                             </a>
-                            <a href="{{ route('edit', $i->id) }}" class="btn btn-sm btn-success" data-toggle="tooltip" title="Edit Buku">
+                            <a href="{{ route('edit', $i->id) }}" class="btn btn-sm btn-success" data-toggle="tooltip"
+                                title="Edit Buku" style="margin-right: 5px;">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('delete', $i->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?');">
+                            <form action="{{ route('delete', $i->id) }}" method="POST"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?');"
+                                style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger" type="submit" data-toggle="tooltip" title="Hapus Buku">
+                                <button class="btn btn-sm btn-danger" type="submit" data-toggle="tooltip"
+                                    title="Hapus Buku">
                                     <i class="fas fa-trash-alt"></i> Hapus
                                 </button>
                             </form>

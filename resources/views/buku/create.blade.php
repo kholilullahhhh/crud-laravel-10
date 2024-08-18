@@ -3,13 +3,13 @@
 
 <div class="container mt-5">
     <h2 class="mb-4">Tambah Buku Baru</h2>
-    <form action="{{ route('store') }}" method="POST">
+    <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group mb-4">
             <label for="judul" class="form-label">Judul</label>
             <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" id="judul"
-                placeholder="Masukkan judul buku">
+                placeholder="Masukkan judul buku" value="{{ old('judul') }}">
             @error('judul')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -18,7 +18,7 @@
         <div class="form-group mb-4">
             <label for="pengarang" class="form-label">Pengarang</label>
             <input type="text" class="form-control @error('pengarang') is-invalid @enderror" name="pengarang"
-                id="pengarang" placeholder="Masukkan nama pengarang">
+                id="pengarang" placeholder="Masukkan nama pengarang" value="{{ old('pengarang') }}">
             @error('pengarang')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -27,8 +27,16 @@
         <div class="form-group mb-4">
             <label for="konten" class="form-label">Konten</label>
             <textarea class="form-control @error('konten') is-invalid @enderror" name="konten" id="konten" rows="5"
-                placeholder="Masukkan konten buku"></textarea>
+                placeholder="Masukkan konten buku">{{ old('konten') }}</textarea>
             @error('konten')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="gambar" class="form-label">Gambar</label>
+            <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar">
+            @error('gambar')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

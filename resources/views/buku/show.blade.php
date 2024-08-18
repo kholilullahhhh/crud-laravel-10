@@ -9,6 +9,11 @@
             <h4>{{ $buku->judul }}</h4>
         </div>
         <div class="card-body">
+            <!-- Display the book image -->
+            <div class="mb-4">
+                <img src="{{ asset('images/' . $buku->gambar) }}" alt="{{ $buku->judul }}" class="img-fluid" style="max-height: 400px;">
+            </div>
+            
             <p><strong>Pengarang:</strong> {{ $buku->pengarang }}</p>
             <p><strong>Konten:</strong> {{ $buku->konten }}</p>
         </div>
